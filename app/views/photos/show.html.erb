@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<%= image_tag @photo.image_url %>
+<h2><%= @photo.name %></h2>
+<div class="star-rating" data-score= <%= @avg_rating %> ></div>
+<p><%= "#{@reviews.length} reviews" %> </p><br>
+<div><%= link_to "Rate the Photo", new_photo_review_path(@photo) %></div>
+
+<% if @reviews.blank? %>
+  <h3>No ratings yet. Be the first to do one! </h3>
+<% else %>
+  <table>
+    <tbody>
+      <% @reviews.each do |review| %>
+      <tr>
+        <td>
+          <div class="star-rating" data-score= <%= review.rating %> ></div>
+          <p><%= review.comment %></p>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+    
+<% end %>
+
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>
+
+<script>
+  $('.star-rating').raty({
+    path: '../images',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>
+
+
