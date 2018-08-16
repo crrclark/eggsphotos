@@ -5,8 +5,6 @@ ruby '2.3.4'
 
 gem 'rails', '4.2.5'
 
-gem 'sqlite3', group: :development
-
 gem 'sass-rails', '~> 5.0'
 
 gem 'uglifier', '>= 1.3.0'
@@ -25,10 +23,6 @@ gem 'carrierwave'
 
 gem 'mini_magick'
 
-gem 'rails_12factor', group: :production
-
-gem 'pg', group: :production
-
 group :development, :test do
   
   gem 'byebug'
@@ -37,7 +31,13 @@ end
 group :development do
   
   gem 'web-console', '~> 2.0'
+  gem 'sqlite3'
   gem 'spring'
   
+end
+
+group :production do
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor'
 end
 
